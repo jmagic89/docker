@@ -32,6 +32,8 @@ services:
   cluster:
     image: ipfs/ipfs-cluster:latest
     container_name: dreamlink-cluster
+    depends_on: 
+      - server
     networks: 
       - dreamlink
     dns:
