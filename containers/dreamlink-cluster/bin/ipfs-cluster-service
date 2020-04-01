@@ -3,4 +3,4 @@
 CONTAINER_NAME="dreamlink-cluster"
 CONTAINER_EXEC="ipfs-cluster-service"
 
-docker exec -ti $CONTAINER_NAME sh -c "$CONTAINER_EXEC $@"
+docker exec -ti $CONTAINER_NAME sh -c "$CONTAINER_EXEC $*"

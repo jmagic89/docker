@@ -8,6 +8,7 @@ services:
   cluster:
     image: ipfs/ipfs-cluster:latest
     container_name: dreamlink-cluster
+    restart: always
     networks: 
       - dreamlink
     dns:
