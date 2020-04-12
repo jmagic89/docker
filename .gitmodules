@@ -1,0 +1,3 @@
+[submodule "servers"]
+	path = servers
+	url = git@bitbucket.org:dreamnettech/servers.git

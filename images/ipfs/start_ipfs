@@ -17,6 +17,8 @@ ipfs version
 
 if [ -e "$repo/config" ]; then
   echo "Found IPFS fs-repo at $repo"
+
+  rm -f $repo/api $repo/repo.lock
 else
   case "$IPFS_PROFILE" in
     "") INIT_ARGS="" ;;
@@ -24,6 +26,7 @@ else
   esac
 
   ipfs init $INIT_ARGS
+  ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
   ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 
   # Set up the swarm key, if provided
@@ -55,7 +58,7 @@ else
 
   # DreamNet setup
   echo "DreamNet config..."
-  ipfs config Datastore.GCPeriod "1h"
+  ipfs config Datastore.GCPeriod "12h"
   ipfs config --json Datastore.StorageGCWatermark "80"
 
   ipfs config --bool Experimental.Libp2pStreamMounting true
@@ -81,8 +84,8 @@ else
       ipfs config --bool Swarm.EnableRelayHop false
       ;;
     "router")
-      ipfs config Datastore.GCPeriod "15m"
-      ipfs config --json Datastore.StorageGCWatermark "60"
+      ipfs config Datastore.GCPeriod "1h"
+      ipfs config --json Datastore.StorageGCWatermark "70"
 
       ipfs config Ipns.RepublishPeriod "12h"
 
@@ -96,9 +99,8 @@ echo "DreamNet Bootstrap..."
 ipfs bootstrap rm all
 
 if [ ! -z "$DREAMLINK_BOOTSTRAP" ] ; then
-  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmbhUmwQnPheUciCX9DxCSe17PCEPU2XUZCRt5DaW39ycR"
+  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmcWoy1FzBicbYuopNT2rT6EDQSBDfco1TxibEyYgWbiMq"
   ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmRQTpmbSVGCDAYw1wyTmPq647dW3fXwkhX6UBQErv1sTJ"
-  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmRhTAUNgnG6MC1kXZivHZFJQFTCbexVRxGE8N2pdHDSdz"
 fi
 
 exec ipfs "$@"

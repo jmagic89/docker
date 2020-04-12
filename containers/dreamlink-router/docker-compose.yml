@@ -17,6 +17,7 @@ services:
     restart: unless-stopped
     environment:
       IPFS_PROFILE: server,lowpower
+      LIBP2P_FORCE_PNET: 1
       DREAMLINK_MODE: router
     networks: 
       - dreamlink

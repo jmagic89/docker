@@ -13,10 +13,11 @@ services:
   server:
     build: ../../images/ipfs
     image: dreamnettech/ipfs
-    container_name: dreamlink-master
+    container_name: dreamlink
     restart: always
     environment:
-      IPFS_PROFILE: server
+      IPFS_PROFILE: server,badgerds
+      LIBP2P_FORCE_PNET: 1
     networks: 
       - dreamlink
     dns:
