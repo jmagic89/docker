@@ -70,7 +70,6 @@ else
   ipfs config Reprovider.Strategy "all"
 
   ipfs config --bool Swarm.DisableRelay false
-  ipfs config --bool Swarm.EnableAutoNATService true
   ipfs config --bool Swarm.EnableAutoRelay true
   ipfs config --bool Swarm.EnableRelayHop true
 
@@ -80,7 +79,6 @@ else
 
       ipfs config Reprovider.Interval "6h"
 
-      ipfs config --bool Swarm.EnableAutoNATService false
       ipfs config --bool Swarm.EnableRelayHop false
       ;;
     "router")
@@ -99,8 +97,8 @@ echo "DreamNet Bootstrap..."
 ipfs bootstrap rm all
 
 if [ ! -z "$DREAMLINK_BOOTSTRAP" ] ; then
-  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmcWoy1FzBicbYuopNT2rT6EDQSBDfco1TxibEyYgWbiMq"
-  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/ipfs/QmRQTpmbSVGCDAYw1wyTmPq647dW3fXwkhX6UBQErv1sTJ"
+  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/p2p/QmcWoy1FzBicbYuopNT2rT6EDQSBDfco1TxibEyYgWbiMq"
+  ipfs bootstrap add "/dnsaddr/bootstrap.link.dreamnet.tech/p2p/QmRQTpmbSVGCDAYw1wyTmPq647dW3fXwkhX6UBQErv1sTJ"
 fi
 
 exec ipfs "$@"

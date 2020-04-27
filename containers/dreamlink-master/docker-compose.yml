@@ -1,11 +1,11 @@
 #
-# DreamLink Master Node. 
+# DreamLink Master Node.
 # Offers core functions to be a mainstay of the network.
 #
 
 version: "3.7"
 
-networks: 
+networks:
   dreamlink:
     name: dreamlink
 
@@ -18,18 +18,13 @@ services:
     environment:
       IPFS_PROFILE: server,badgerds
       LIBP2P_FORCE_PNET: 1
-    networks: 
+    networks:
       - dreamlink
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
     ports:
-      - 4001:4001 # Swarm TCP
-      - 5001:5001 # REST API
-      - 8080:8080 # Web Gateway
-      - 8081:8081 # Swarm Websockets
-    expose:
-      - "5001"
+      - "4001:4001" # Swarm TCP
+      - "5001:5001" # REST API
+      - "8080:8080" # Web Gateway
+      - "8081:8081" # Swarm Websockets
     volumes:
       - ./data/ipfs:/data/ipfs
 
@@ -37,16 +32,13 @@ services:
     image: ipfs/ipfs-cluster:latest
     container_name: dreamlink-cluster
     restart: always
-    depends_on: 
+    depends_on:
       - server
-    networks: 
+    networks:
       - dreamlink
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
     ports:
-      - 9094:9094 # REST API
-      - 9095:9095 # IPFS REST API
-      - 9096:9096 # Swarm TCP
+      - "9094:9094" # REST API
+      - "9095:9095" # IPFS REST API
+      - "9096:9096" # Swarm TCP
     volumes:
       - ./data/ipfs-cluster:/data/ipfs-cluster
